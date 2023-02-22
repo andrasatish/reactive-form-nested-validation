@@ -3,7 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { CouponComponent } from './components/coupon/coupon.component';
 
 const routes: Routes = [
-  {path:'coupon',component:CouponComponent}
+  {path:'coupon',component:CouponComponent},
+  {path:'', redirectTo:'/coupon', pathMatch:'full'}
 ];
 
 @NgModule({

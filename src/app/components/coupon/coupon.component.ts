@@ -1,86 +1,86 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-coupon',
   templateUrl: './coupon.component.html',
-  styleUrls: ['./coupon.component.css']
+  styleUrls: ['./coupon.component.css'],
 })
 export class CouponComponent implements OnInit {
-
   title = 'assignment';
-  test="test data";
-  coupon_type=['User','option2','option3'];
-  availability=['unlimited','limited'];
-  discountArray=['percentage','custom option']
+  test = 'test data';
+  coupon_type = ['User', 'option2', 'option3'];
+  availability = ['unlimited', 'limited'];
+  discountArray = ['percentage', 'custom option'];
+  couponForm: FormGroup = this.fb.group({});
 
-  couponForm:FormGroup= new FormGroup({
-    coupon_type:new FormControl('',Validators.required),
-    coupon_code:new FormControl('',Validators.required),
-    valid_from:new FormControl('',Validators.required),
-    valid_to:new FormControl('',Validators.required),
-    is_active:new FormControl(''),
-    coupon_count:new FormControl(null),
-    is_unlimited:new FormControl(),
-    tnc:new FormControl(''),
-    // availability:new FormControl('',Validators.required),
-    couponstatus:new FormControl('',Validators.required),
-    rules:this.fb.array([this.fb.group({
-      min_amount:new FormControl(''),
-      max_amount:new FormControl(''),
-      discount_type :new FormControl(''),
-      discount:new FormControl(''),
-      max_discount:new FormControl('')
-    })])
-  });
-
-  constructor(private fb:FormBuilder) { 
-
-}
-
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
-    // this.addRules();
-    console.log(this.couponForm);
-    
-    
-  }
-  addRules(){
-    const ruleSet=this.fb.group({
-      min_amount:new FormControl(''),
-      max_amount:new FormControl(''),
-      discount_type :new FormControl(''),
-      discount:new FormControl(''),
-      max_discount:new FormControl('')
+    this.couponForm = this.fb.group({
+      coupon_type: ['', Validators.required],
+      coupon_code: ['', Validators.required],
+      valid_from: ['', Validators.required],
+      valid_to: ['', Validators.required],
+      is_active: ['', Validators.required],
+      coupon_count: [''],
+      is_unlimited: [''],
+      tnc: [''],
+      couponstatus: ['', Validators.required],
+      rules: this.fb.array([]),
     });
-    let ruleArr=this.couponForm.get('rules') as FormArray;
+
+    this.addRules();
+  }
+
+  addRules() {
+    const ruleArr = this.couponForm.get('rules') as FormArray;
+    const ruleSet = this.fb.group({
+      min_amount: [''],
+      max_amount: [''],
+      discount_type: [''],
+      discount: [''],
+      max_discount: [''],
+    });
     ruleArr.push(ruleSet);
   }
-  saveForm(){
-    console.log("Your form data is as :",this.couponForm.value);
-    
+
+  addMore(){
+    this.addRules();
   }
-  select(val:any,type:string){
+
+  saveForm() {
+    console.log('Your form data is as :', this.couponForm.value);
+  }
+
+
+  select(val: any, type: string) {
     console.log(val);
-    
-    let form=this.couponForm.value;
-    if(type==='coupon_type'){
-      form.coupon_type=val;
+
+    let form = this.couponForm.value;
+    if (type === 'coupon_type') {
+      form.coupon_type = val;
+    } else if (type === 'availability') {
+      form.is_unlimited = val === 'unlimited' ? true : false;
+    } else if (type === 'status') {
+      form.status = val;
     }
-    else if (type==='availability'){
-      form.is_unlimited = val==='unlimited' ? true :false;
-    }
-    else if (type==='status'){
-      form.status=val;
-    }
-    
   }
- validations(){
 
- }
+  validations() {}
 
- get f(): {[key:string]:AbstractControl} {
-  return this.couponForm.controls;
- }
+  get f(): { [key: string]: AbstractControl } {
+    return this.couponForm.controls;
+  }
 
+  get ruleArray(): { [key: string]:  any} {
+    return this.couponForm.get('rules') as FormArray;
+  }
 }

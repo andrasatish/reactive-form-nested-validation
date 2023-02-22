@@ -3,7 +3,7 @@
 }
 .userinputs {
     cursor: pointer;
-    width: 48rem;
+    width: 50rem;
     padding-top: 1rem;
 }
 input{
@@ -13,7 +13,7 @@ input{
     border-top: none;
 }
 .couponcode{
-    width: 48rem;
+    width: 50rem;
     padding-top: 1rem;
 }
 .datepickers{
@@ -21,7 +21,7 @@ input{
    padding-top: 2rem;
 }
 .datepickers>div>input{
-    width: 22rem;
+    width: 23rem;
 }
 .maxdiscount{
     width:23rem;
@@ -33,18 +33,35 @@ input{
     display:flex;
 }
 .rulesbox >article>div>input{
-    width:23rem;
+    width:25rem;
     margin-left:1rem;
     padding-top:1rem;
 }
 .ruleheader{
-    width:48rem;
+    width:50rem;
     height:2rem;
     background-color: rgb(165, 185, 230);
     color: black;
     padding-left: 1rem;
     font-size: medium;
+    box-sizing: border-box;
 }
+.limits{
+    display: flex;
+    box-sizing: border-box;
+}
+.w-50{
+    width: 24rem;
+    margin: 10px 20px 10px 0;
+}
+.add-more{
+    position: absolute;
+    right: 18%;
+}
+.save-btn{
+    margin: 50px 0;
+}
+
 /* ================================ */
 @media screen and (max-width: 600px) {
     .container{

@@ -1,138 +1,141 @@
 <!-- <div class="container"> -->
-<mat-card class="container" [formGroup]="couponForm">
-  <mat-card-content>One Digital Entertainment</mat-card-content>
-  <div>
-    <mat-form-field appearance="fill" class="userinputs">
-      <mat-label>Coupon Type</mat-label>
-      <mat-select
-        [disabled]="false"
-        formControlName="coupon_type"
-        (selectionChange)="select($event.value, 'coupon_type')"
-        ngDefaultControl
-        [value]="couponForm.value.coupon_type"
-      >
-        <mat-option *ngFor="let item of coupon_type" [value]="item">
-          {{ item }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-  <div class="userinputs">
-    <input
-      type="text"
-      placeholder="Coupon Code *"
-      class="couponcode"
-      formControlName="coupon_code"
-    />
-  </div>
-  <div class="datepickers">
-    <div>
-      <input
-        matInput
-        [matDatepicker]="picker"
-        placeholder="Start Date *"
-        formControlName="valid_from"
-      />
-      <mat-datepicker-toggle
-        matIconSuffix
-        [for]="picker"
-      ></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </div>
-    <div>
-      <input
-        matInput
-        [matDatepicker]="picker1"
-        placeholder="End Date *"
-        formControlName="valid_to"
-      />
-      <mat-datepicker-toggle
-        matIconSuffix
-        [for]="picker1"
-      ></mat-datepicker-toggle>
-      <mat-datepicker #picker1></mat-datepicker>
-    </div>
-  </div>
-  <div class="userinputs">
-    <mat-form-field appearance="fill">
-      <mat-label>Coupon Availability</mat-label>
-      <mat-select
-        [disabled]="false"
-        formControlName="is_unlimited"
-        (selectionChange)="select($event.value, 'availability')"
-        [value]="couponForm.value.is_unlimited"
-        ngDefaultControl
-      >
-        <mat-option *ngFor="let item of availability" [value]="item">
-          {{ item }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-  <div class="userinputs">
-    <mat-form-field appearance="fill" class="userinputs">
-      <mat-label>Coupon Status</mat-label>
-      <mat-select
-        [disabled]="false"
-        formControlName="couponstatus"
-        (selectionChange)="select($event.value, 'couponstatus')"
-        [value]="couponForm.value.couponstatus"
-        ngDefaultControl
-      >
-        <mat-option *ngFor="let item of coupon_type" [value]="item">
-          {{ item }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-  <!-- rules container here  -->
-  <span>COUPON RULES :</span>
-  <div>
-    <section class="rulesbox">
-      <!-- *ngFor="let item of couponForm.get('controls'); let i= index" -->
-      <!-- [formGroupName]="i" -->
-
-      <article>
+  <mat-card>
+    <form class="container" [formGroup]="couponForm" (ngSubmit)="saveForm()">
+      <mat-card-content>One Digital Entertainment</mat-card-content>
+      <div>
+        <mat-form-field appearance="fill" class="userinputs">
+          <mat-label>Coupon Type</mat-label>
+          <mat-select
+            [disabled]="false"
+            formControlName="coupon_type"
+            (selectionChange)="select($event.value, 'coupon_type')"
+            ngDefaultControl
+            [value]="couponForm.value.coupon_type"
+          >
+            <mat-option *ngFor="let item of coupon_type" [value]="item">
+              {{ item }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="userinputs">
+        <input
+          type="text"
+          placeholder="Coupon Code *"
+          class="couponcode"
+          formControlName="coupon_code"
+        />
+      </div>
+      <div class="datepickers">
         <div>
-          <div class="ruleheader">RULE 1</div>
-          <div class="limits">
-            <input
-              type="number"
-              placeholder="Min amount"
-              formControlName="min_amount"
-            />
-            <input
-              type="number"
-              placeholder="Max amount"
-              formControlName="max_amount"
-            />
-          </div>
-          <div class="discount">
-            <mat-form-field appearance="fill" class="maxdiscount">
-              <mat-label>Discount Type</mat-label>
-              <mat-select
-                [disabled]="false"
-                (selectionChange)="select($event.value, 'discount_type')"
-                ngDefaultControl
-              >
-                <mat-option *ngFor="let item of discountArray" [value]="item">
-                  {{ item }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-            <input placeholder="discount" />
-          </div>
-
-          <div class="max">
-            <input type="number" placeholder="Max discount" />
-          </div>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            placeholder="Start Date *"
+            formControlName="valid_from"
+          />
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
         </div>
-      </article>
-    </section>
-  </div>
-</mat-card>
-
-<button (click)="saveForm()" matbutton>Save</button>
-<br />
-
-<!-- <mat-slide-toggle>Toggle me!</mat-slide-toggle> -->
+        <div>
+          <input
+            matInput
+            [matDatepicker]="picker1"
+            placeholder="End Date *"
+            formControlName="valid_to"
+          />
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker1"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </div>
+      </div>
+      <div class="userinputs">
+        <mat-form-field appearance="fill">
+          <mat-label>Coupon Availability</mat-label>
+          <mat-select
+            [disabled]="false"
+            formControlName="is_unlimited"
+            (selectionChange)="select($event.value, 'availability')"
+            [value]="couponForm.value.is_unlimited"
+            ngDefaultControl
+          >
+            <mat-option *ngFor="let item of availability" [value]="item">
+              {{ item }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="userinputs">
+        <mat-form-field appearance="fill" class="userinputs">
+          <mat-label>Coupon Status</mat-label>
+          <mat-select
+            [disabled]="false"
+            formControlName="couponstatus"
+            (selectionChange)="select($event.value, 'couponstatus')"
+            [value]="couponForm.value.couponstatus"
+            ngDefaultControl
+          >
+            <mat-option *ngFor="let item of coupon_type" [value]="item">
+              {{ item }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <!-- rules container here  -->
+      <div formArrayName="rules">
+        <span>COUPON RULES :</span>
+        <section class="rulesbox"  *ngFor="let rule of ruleArray['controls']; let i=index">
+          <article [formGroupName]="i">
+            <div>
+              <div class="ruleheader">RULE {{i+1}}</div>
+              <div class="row-fill">
+                <input
+                  type="number"
+                  placeholder="Min amount"
+                  formControlName="min_amount"
+                  class="w-50"
+                />
+                <input
+                  type="number"
+                  placeholder="Max amount"
+                  formControlName="max_amount"
+                  class="w-50"
+                />
+              </div>
+              <div class="discount row-fill">
+                <mat-form-field appearance="fill" class="maxdiscount w-50">
+                  <mat-label>Discount Type</mat-label>
+                  <mat-select
+                    [disabled]="false"
+                    (selectionChange)="select($event.value, 'discount_type')"
+                    ngDefaultControl
+                  >
+                    <mat-option *ngFor="let item of discountArray" [value]="item">
+                      {{ item }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <input placeholder="discount" class="w-50"/>
+              </div>
+    
+              <div class="max">
+                <input type="number" placeholder="Max discount" class="w-50"/>
+              </div>
+            </div>
+          </article>
+        </section>
+        <div class="action-button">
+          <button type="button" (click)="addMore()" class="add-more">Add More</button>
+          <button type="submit" class="save-btn" matbutton>Save</button>
+        </div>
+      </div>
+    </form >
+    
+  </mat-card>
+  <!-- <mat-slide-toggle>Toggle me!</mat-slide-toggle> -->
+  
