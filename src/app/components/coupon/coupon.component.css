@@ -1,8 +1,5 @@
 .container{
-    border: 1px solid black;
     padding-left:15rem;
-    /* padding-right:6rem; */
-
 }
 .userinputs {
     cursor: pointer;
@@ -25,6 +22,28 @@ input{
 }
 .datepickers>div>input{
     width: 22rem;
+}
+.maxdiscount{
+    width:23rem;
+}
+.rulesbox{
+    margin-top: 1rem;
+}
+.rulesbox >div{
+    display:flex;
+}
+.rulesbox >article>div>input{
+    width:23rem;
+    margin-left:1rem;
+    padding-top:1rem;
+}
+.ruleheader{
+    width:48rem;
+    height:2rem;
+    background-color: rgb(165, 185, 230);
+    color: black;
+    padding-left: 1rem;
+    font-size: medium;
 }
 /* ================================ */
 @media screen and (max-width: 600px) {
